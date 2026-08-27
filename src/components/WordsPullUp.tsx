@@ -16,7 +16,7 @@ export const WordsPullUp: React.FC<WordsPullUpProps> = ({
   wordClassName = "",
   showAsterisk = false,
   delay = 0,
-  stagger = 0.08
+  stagger = 0.08,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -24,24 +24,24 @@ export const WordsPullUp: React.FC<WordsPullUpProps> = ({
   const words = text.split(" ");
 
   return (
-    <div ref={ref} className={`flex flex-wrap ${className}`}>
+    <div ref={ref} className={`inline-flex flex-wrap ${className}`}>
       {words.map((word, i) => {
         const isLastWord = i === words.length - 1;
         return (
-          <span key={i} className="inline-block overflow-hidden py-1">
+          <span key={i} className="inline-block overflow-hidden">
             <motion.span
               className={`inline-block relative ${wordClassName}`}
-              initial={{ y: 35, opacity: 0 }}
-              animate={isInView ? { y: 0, opacity: 1 } : { y: 35, opacity: 0 }}
+              initial={{ y: 20, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
               transition={{
-                duration: 0.65,
+                duration: 0.6,
                 delay: delay + i * stagger,
-                ease: [0.16, 1, 0.3, 1]
+                ease: [0.16, 1, 0.3, 1],
               }}
             >
               {word}
               {showAsterisk && isLastWord && (
-                <span className="absolute top-[0.1em] -right-[0.35em] text-[0.4em] font-serif italic text-[#FFFF00] leading-none select-none">
+                <span className="absolute top-[0.65em] -right-[0.3em] text-[0.31em] leading-none select-none font-normal">
                   *
                 </span>
               )}
