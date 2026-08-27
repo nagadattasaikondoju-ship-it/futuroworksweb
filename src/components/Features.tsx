@@ -24,9 +24,8 @@ export const Features: React.FC<FeaturesProps> = ({ onOpenInquiry }) => {
 
   const cards = [
     {
-      type: 'video',
-      videoUrl:
-        'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4',
+      type: 'image',
+      imageUrl: '/assets/image12.jpeg',
       bottomText: 'Your creative canvas. 1,130+ trained.',
     },
     {
@@ -100,20 +99,17 @@ export const Features: React.FC<FeaturesProps> = ({ onOpenInquiry }) => {
             }}
             className="h-full rounded-2xl md:rounded-3xl overflow-hidden relative"
           >
-            {card.type === 'video' ? (
-              /* Card 1: Full Video Background */
-              <div className="relative w-full h-full min-h-[380px] lg:min-h-full rounded-2xl md:rounded-3xl overflow-hidden bg-black flex flex-col justify-end p-6 md:p-8 border border-neutral-800">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                  src={card.videoUrl}
+            {card.type === 'image' ? (
+              /* Card 1: Authentic Futuro Works Crew Photo */
+              <div className="relative w-full h-full min-h-[380px] lg:min-h-full rounded-2xl md:rounded-3xl overflow-hidden bg-black flex flex-col justify-end p-6 md:p-8 border border-neutral-800 group">
+                <img
+                  src={card.imageUrl}
+                  alt="Futuro Works Founder & Crew"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
                 <span className="relative z-10 text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#FFFF00]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#FFFF00] shadow-[0_0_8px_#FFFF00]" />
                   <span>{card.bottomText}</span>
                 </span>
               </div>
