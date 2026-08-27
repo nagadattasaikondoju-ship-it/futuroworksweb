@@ -8,8 +8,10 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#DEDBC8',
-          70: 'rgba(222, 219, 200, 0.7)',
+          DEFAULT: '#FFFF00',
+          muted: '#D0D006',
+          cream: '#DEDBC8',
+          70: 'rgba(255, 255, 0, 0.7)',
         },
       },
       fontFamily: {

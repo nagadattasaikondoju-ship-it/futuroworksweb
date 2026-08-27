@@ -3,17 +3,21 @@ import { motion, useInView } from 'framer-motion';
 import { Check, ArrowRight } from 'lucide-react';
 import { WordsPullUpMultiStyle, TextSegment } from './WordsPullUpMultiStyle';
 
-export const Features: React.FC = () => {
+interface FeaturesProps {
+  onOpenInquiry?: () => void;
+}
+
+export const Features: React.FC<FeaturesProps> = ({ onOpenInquiry }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   const headerSegments: TextSegment[] = [
     {
-      text: "Studio-grade workflows for visionary creators.",
-      className: "text-[#E1E0CC] font-normal block",
+      text: "Studio-grade pipelines for visionary worldbuilders.",
+      className: "text-white font-normal block",
     },
     {
-      text: "Built for pure vision. Powered by art.",
+      text: "Built for pure vision. Powered by industry tools.",
       className: "text-gray-500 font-normal block mt-1",
     },
   ];
@@ -23,40 +27,46 @@ export const Features: React.FC = () => {
       type: 'video',
       videoUrl:
         'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4',
-      bottomText: 'Your creative canvas.',
+      bottomText: 'Your creative canvas. 1,130+ trained.',
     },
     {
       type: 'content',
       number: '01',
-      title: 'Project Storyboard.',
+      title: '3D & 2D Animation.',
+      tools: 'Maya · Blender · Toon Boom',
+      students: '150+ Students',
       icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.png&w=1280&q=85',
       items: [
-        'Dynamic timeline planning',
-        'Frame-accurate narrative mapping',
-        'Collaborative shot lists',
-        'Direct asset synchronization',
+        'Character rigging & keyframe motion',
+        '2D classical layout & animatics',
+        'Cinematic lighting & PBR texturing',
+        'Production pipeline timing',
       ],
     },
     {
       type: 'content',
       number: '02',
-      title: 'Smart Critiques.',
+      title: 'Visual Effects (VFX).',
+      tools: 'Nuke · Houdini · Unreal 5',
+      students: '300+ Students',
       icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png&w=1280&q=85',
       items: [
-        'Automated lighting & color analysis',
-        'Contextual director creative notes',
-        'Seamless NLE & 3D tool integration',
+        'Node-based deep compositing in Nuke',
+        'Pyro, fluid & destruction in Houdini',
+        'Unreal Engine 5 virtual production sets',
       ],
     },
     {
       type: 'content',
       number: '03',
-      title: 'Immersion Capsule.',
+      title: 'Game Dev & Worlds.',
+      tools: 'Unreal Engine 5 · Unity',
+      students: '480+ Students',
       icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.png&w=1280&q=85',
       items: [
-        'Zero-interruption focus mode',
-        'Curated acoustic soundscapes',
-        'Automated production sync',
+        'Real-time Lumen & Nanite worldbuilding',
+        'Blueprints & gameplay mechanics',
+        'Cross-platform PC & mobile systems',
       ],
     },
   ];
@@ -76,7 +86,7 @@ export const Features: React.FC = () => {
       {/* 4-Column Card Grid */}
       <div
         ref={containerRef}
-        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-2 md:gap-1 lg:h-[480px] relative z-10"
+        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-2 md:gap-1 lg:h-[490px] relative z-10"
       >
         {cards.map((card, index) => (
           <motion.div
@@ -92,7 +102,7 @@ export const Features: React.FC = () => {
           >
             {card.type === 'video' ? (
               /* Card 1: Full Video Background */
-              <div className="relative w-full h-full min-h-[380px] lg:min-h-full rounded-2xl md:rounded-3xl overflow-hidden bg-black flex flex-col justify-end p-6 md:p-8">
+              <div className="relative w-full h-full min-h-[380px] lg:min-h-full rounded-2xl md:rounded-3xl overflow-hidden bg-black flex flex-col justify-end p-6 md:p-8 border border-neutral-800">
                 <video
                   autoPlay
                   loop
@@ -101,59 +111,65 @@ export const Features: React.FC = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                   src={card.videoUrl}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                <span
-                  style={{ color: '#E1E0CC' }}
-                  className="relative z-10 text-sm sm:text-base font-normal"
-                >
-                  {card.bottomText}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
+                <span className="relative z-10 text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#FFFF00]" />
+                  <span>{card.bottomText}</span>
                 </span>
               </div>
             ) : (
               /* Cards 2, 3, 4: Content Cards */
-              <div className="bg-[#212121] w-full h-full min-h-[380px] lg:min-h-full rounded-2xl md:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between">
+              <div className="bg-[#181818] border border-neutral-800/80 hover:border-[#FFFF00]/50 w-full h-full min-h-[380px] lg:min-h-full rounded-2xl md:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between transition-colors duration-300">
                 <div>
-                  {/* Top Icon */}
-                  <img
-                    src={card.icon}
-                    alt={card.title}
-                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover mb-6"
-                    loading="lazy"
-                  />
+                  {/* Top Bar: Icon & Students Tag */}
+                  <div className="flex items-center justify-between mb-6">
+                    <img
+                      src={card.icon}
+                      alt={card.title}
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover"
+                      loading="lazy"
+                    />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFFF00] bg-[#FFFF00]/10 px-2 py-0.5 rounded-full">
+                      {card.students}
+                    </span>
+                  </div>
 
                   {/* Title with Number */}
-                  <div className="mb-6">
+                  <div className="mb-4">
                     <span className="text-gray-500 font-mono text-xs block mb-1">
                       {card.number}
                     </span>
-                    <h3 className="text-white text-lg sm:text-xl font-normal tracking-tight">
+                    <h3 className="text-white text-lg sm:text-xl font-bold tracking-tight">
                       {card.title}
                     </h3>
+                    <span className="text-[11px] font-mono text-neutral-400 block mt-0.5">
+                      {card.tools}
+                    </span>
                   </div>
 
                   {/* Checklist items */}
-                  <ul className="space-y-3">
+                  <ul className="space-y-2.5 mt-4 pt-3 border-t border-neutral-800/80">
                     {card.items?.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                        <Check size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-400 font-normal leading-snug">{item}</span>
+                      <li key={idx} className="flex items-start gap-2 text-xs">
+                        <Check size={14} className="text-[#FFFF00] mt-0.5 flex-shrink-0" />
+                        <span className="text-neutral-300 font-normal leading-snug">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Learn More Link with -45 deg rotated arrow */}
-                <div className="pt-6 border-t border-neutral-800">
-                  <a
-                    href="#inquiries"
-                    className="group inline-flex items-center gap-1.5 text-xs text-primary font-normal hover:text-white transition-colors"
+                <div className="pt-5 border-t border-neutral-800">
+                  <button
+                    onClick={onOpenInquiry}
+                    className="group inline-flex items-center gap-1.5 text-xs text-[#FFFF00] font-bold uppercase tracking-wider hover:text-white transition-colors"
                   >
-                    <span>Learn more</span>
+                    <span>Explore Syllabus</span>
                     <ArrowRight
                       size={14}
                       className="-rotate-45 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
-                  </a>
+                  </button>
                 </div>
               </div>
             )}
