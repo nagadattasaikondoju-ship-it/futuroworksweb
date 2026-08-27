@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Check, ArrowRight } from 'lucide-react';
 import { WordsPullUpMultiStyle, TextSegment } from './WordsPullUpMultiStyle';
+import { AnimatedCounter } from './AnimatedCounter';
 
 interface FeaturesProps {
   onOpenInquiry?: () => void;
@@ -26,14 +27,14 @@ export const Features: React.FC<FeaturesProps> = ({ onOpenInquiry }) => {
     {
       type: 'image',
       imageUrl: '/assets/image12.jpeg',
-      bottomText: 'Your creative canvas. 1,130+ trained.',
+      trainedTarget: 1130,
     },
     {
       type: 'content',
       number: '01',
       title: '3D & 2D Animation.',
       tools: 'Maya · Blender · Toon Boom',
-      students: '150+ Students',
+      studentsCount: 150,
       icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.png&w=1280&q=85',
       items: [
         'Character rigging & keyframe motion',
@@ -47,7 +48,7 @@ export const Features: React.FC<FeaturesProps> = ({ onOpenInquiry }) => {
       number: '02',
       title: 'Visual Effects (VFX).',
       tools: 'Nuke · Houdini · Unreal 5',
-      students: '300+ Students',
+      studentsCount: 300,
       icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png&w=1280&q=85',
       items: [
         'Node-based deep compositing in Nuke',
@@ -60,7 +61,7 @@ export const Features: React.FC<FeaturesProps> = ({ onOpenInquiry }) => {
       number: '03',
       title: 'Game Dev & Worlds.',
       tools: 'Unreal Engine 5 · Unity',
-      students: '480+ Students',
+      studentsCount: 480,
       icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.png&w=1280&q=85',
       items: [
         'Real-time Lumen & Nanite worldbuilding',
@@ -110,7 +111,12 @@ export const Features: React.FC<FeaturesProps> = ({ onOpenInquiry }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
                 <span className="relative z-10 text-sm sm:text-base font-bold text-white flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#FFFF00] shadow-[0_0_8px_#FFFF00]" />
-                  <span>{card.bottomText}</span>
+                  <span>
+                    Your creative canvas.{' '}
+                    <span className="text-[#FFFF00] font-mono">
+                      <AnimatedCounter to={card.trainedTarget || 1130} suffix="+ trained." duration={1.8} />
+                    </span>
+                  </span>
                 </span>
               </div>
             ) : (
@@ -125,8 +131,8 @@ export const Features: React.FC<FeaturesProps> = ({ onOpenInquiry }) => {
                       className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover"
                       loading="lazy"
                     />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFFF00] bg-[#FFFF00]/10 px-2 py-0.5 rounded-full">
-                      {card.students}
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#FFFF00] bg-[#FFFF00]/10 px-2 py-0.5 rounded-full font-mono">
+                      <AnimatedCounter to={card.studentsCount || 100} suffix="+ Students" duration={1.5} />
                     </span>
                   </div>
 

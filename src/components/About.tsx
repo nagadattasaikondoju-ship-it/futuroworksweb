@@ -1,6 +1,7 @@
 import React from 'react';
 import { WordsPullUpMultiStyle, TextSegment } from './WordsPullUpMultiStyle';
 import { ScrollCharReveal } from './AnimatedLetter';
+import { AnimatedCounter } from './AnimatedCounter';
 
 export const About: React.FC = () => {
   const headingSegments: TextSegment[] = [
@@ -13,10 +14,10 @@ export const About: React.FC = () => {
     "Operating from Hyderabad, Futuro Works unites directors, animators, and digital artists. Over the last years, we have trained 1,130+ creators across four core disciplines and partnered with industry leaders like OneLoop and the Microsoft Fabric Hackathon to bring Indian talent to global screens.";
 
   const stats = [
-    { count: "150+", label: "3D & 2D Animators", tools: "Maya, Blender" },
-    { count: "300+", label: "VFX Artists", tools: "Nuke, Houdini" },
-    { count: "480+", label: "Game Devs", tools: "Unreal 5, Unity" },
-    { count: "200+", label: "Designers", tools: "Photoshop, Figma" },
+    { target: 150, label: "3D & 2D Animators", tools: "Maya, Blender" },
+    { target: 300, label: "VFX Artists", tools: "Nuke, Houdini" },
+    { target: 480, label: "Game Devs", tools: "Unreal 5, Unity" },
+    { target: 200, label: "Designers", tools: "Photoshop, Figma" },
   ];
 
   return (
@@ -41,11 +42,13 @@ export const About: React.FC = () => {
           />
         </div>
 
-        {/* Minimal 4-Pillar Stat Row */}
+        {/* Minimal 4-Pillar Fast Count Animation Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-12 pt-10 border-t border-neutral-900 w-full max-w-4xl">
           {stats.map((item) => (
-            <div key={item.label} className="text-center p-3 rounded-2xl bg-black/40 border border-neutral-800/80">
-              <div className="text-2xl sm:text-3xl font-bold text-[#FFFF00] mb-0.5">{item.count}</div>
+            <div key={item.label} className="text-center p-3 rounded-2xl bg-black/40 border border-neutral-800/80 hover:border-[#FFFF00]/40 transition-colors">
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#FFFF00] mb-0.5 font-mono">
+                <AnimatedCounter to={item.target} suffix="+" duration={1.5} />
+              </div>
               <div className="text-xs font-medium text-white">{item.label}</div>
               <div className="text-[10px] text-neutral-400 font-mono mt-1">{item.tools}</div>
             </div>
